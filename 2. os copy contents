@@ -1,0 +1,29 @@
+#include<stdio.h>
+#include<stdlib.h>
+int main(){
+	FILE *fp1,*fp2;
+	char str[100];
+	char c;
+	printf("enter the file name to read(in .txt format):\n");
+	scanf("%s",str);
+	fp1=fopen(str,"r");
+	if(fp1==NULL){
+		printf("could not open the file");
+		exit(0);
+	}
+	printf("enter the file name for writing(in .txt format):\n");
+	scanf("%s",str);
+	fp2=fopen(str,"w");
+	if(fp2==NULL){
+		printf("could not open the file");
+		exit(0);
+	}
+	c=fgetc(fp1);
+	while(c!=EOF){
+		fputc(c,fp2);
+		c=fgetc(fp1);
+	}
+	printf("content is copied to %s",str);
+	fclose(fp1);
+	fclose(fp2);
+}
