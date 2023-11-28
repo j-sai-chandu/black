@@ -1,0 +1,49 @@
+#include<iostream>
+#include<stdlib.h>
+int main(){
+	int n,i,j,s=0,s1=0;
+	printf("enter the number of processes:");
+	scanf("%d",&n);
+	int bt[n];
+	printf("enter the burst times:\n");
+	for(i=0;i<n;i++){
+		printf("p%d:",i+1);
+		scanf("%d",&bt[i]);
+	}
+	//sorting
+	for(i=0;i<n-1;i++){
+		for(j=0;j<n-i-1;j++){
+			if(bt[j]>bt[j+1]){
+				int t=bt[j];
+				bt[j]=bt[j+1];
+				bt[j+1]=t;
+			}
+		}
+	}
+	printf("burst  time: ");
+	for(i=0;i<n;i++){
+		printf("%d ",bt[i]);
+	}
+	printf("\n");
+	int wt[n];
+	wt[0]=0;
+	printf("waiting time:0 ");
+	for(i=0;i<n-1;i++){
+		printf("%d ",bt[i]+wt[i]);
+		wt[i+1]=wt[i]+bt[i];
+		s=s+wt[i];
+	}
+	printf("\n");
+	int t[n];
+	printf("TAT(to fcfs):");
+	for(i=0;i<n;i++){
+		printf("%d ",wt[i]+bt[i]);
+		t[i]=wt[i]+bt[i];
+		s1=s1+t[i];
+	}
+	printf("\n");
+	float awt=s/n;
+	float atat=s1/n;
+	printf("average waiting time:%.2f\n",awt);
+	printf("average turn around time:%.2f",atat);
+}
