@@ -1,0 +1,23 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<pthread.h>
+#include<unistd.h>
+void *mythread(void *v){
+	
+	printf("inside thread\n");
+	return NULL;
+}
+int main(){
+	pthread_t tid;
+	pthread_create(&tid,NULL,mythread,NULL);
+	printf("thread 1:\n\n");
+	printf("pid id of:%d\n",getpid());
+	printf("thread id:%d\n",tid);
+	pthread_join(tid,NULL);
+	printf("----------------------------------\n");
+	pthread_create(&tid,NULL,mythread,NULL);
+	printf("thread 2:\n\n");
+	printf("pid id of:%d\n",getpid());
+	printf("thread id:%d\n",tid);
+	pthread_join(tid,NULL);
+}
