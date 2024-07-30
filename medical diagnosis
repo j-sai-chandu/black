@@ -1,0 +1,25 @@
+symptom(flu,fever).
+symptom(flu,cough).
+symptom(flu,sore_throat).
+symptom(cold,cough).
+symptom(cold,sore-throat).
+symptom(cold,runny_nose).
+
+has_symptom(P,S):-
+write('does '), write(P), write(' have '), write(S), write('? (yes/no)'),nl,
+read(Result),
+Result==yes.
+
+diag(P, flu):-
+has_symptom(P, fever),
+has_symptom(P, cough),
+has_symptom(P, sore_throat).
+
+diag(P, cold):-
+has_symptom(P, cough),
+has_symptom(P, sore_throat),
+has_symptom(P, runny_nose).
+
+diagnosis(P):-
+diag(P,C),
+write(P), write(' have '), write(C).
