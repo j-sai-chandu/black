@@ -1,0 +1,43 @@
+% Facts
+fact(raining).
+fact(cloudy).
+fact(umbrella_in_car).
+
+% Rules: Define how new facts can be derived from existing facts
+if raining then wet_ground.
+if cloudy and not(sunny) then bring_umbrella.
+if wet_ground and umbrella_in_car then take_umbrella.
+
+% Forward chaining implementation
+derive :- 
+    if X then Y,         % If there is a rule "if X then Y"
+    \+ fact(Y),          % And Y is not already a known fact
+    verify(X),           % And X is true based on known facts
+    assert(fact(Y)),     % Then assert Y as a new fact
+    write('Derived: '), write(Y), nl,
+    derive.              % Repeat to derive more facts
+derive.
+
+% Verifying conjunctions of facts
+verify(A and B) :- verify(A), verify(B).
+verify(not(A)) :- \+ verify(A).
+verify(A) :- fact(A).
+
+% Running the forward chaining
+run_forward_chaining :-
+    derive,              % Derive all possible facts
+    write('Final set of facts:'), nl,
+    listing(fact).       % List all known facts
+
+% Clearing all facts
+clear_facts :-
+    retractall(fact(_)).
+
+OUTPUT:
+?- clear_facts.
+2.
+?- assert(fact(raining)).
+?- assert(fact(cloudy)).
+?- assert(fact(umbrella_in_car)).
+3. 
+?- run_forward_chaining.
