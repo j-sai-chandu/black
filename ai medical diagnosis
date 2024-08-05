@@ -1,0 +1,25 @@
+symptom(flu,fever).
+symptom(flu,cold).
+symptom(flu,sore_throat).
+symptom(denguie,no_energy).
+symptom(denguie,cold).
+symptom(denguie,runny_nose).
+
+has_symptom(P,Symptom):-
+write('Does '),write(P),write(' have '),write(Symptom),write('? (yes/no): '),nl,
+read(Result),
+Result==yes.
+
+diag(P,flu):-
+has_symptom(P,fever),
+has_symptom(P,cold),
+has_symptom(P,sore_throat).
+
+diag(P,denguie):-
+has_symptom(P,no_energy),
+has_symptom(P,cold),
+has_symptom(P,runny_nose).
+
+diagnosis(P):-
+diag(P,Condition),
+write(P), write(' may have '),write(Condition).
