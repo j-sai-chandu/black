@@ -1,0 +1,32 @@
+parent(john,mary).
+parent(mary,susan).
+
+ancestor(X,Y):-parent(X,Y).
+ancestor(X,Y):-parent(X,Z),parent(Z,Y).
+
+forward_chain:-
+(
+parent(X,Y),
+\+ancestor(X,Y),
+assertz(ancestor(X,Y)),
+write('new fact inferes'),write(ancestor(X,Y)),nl,
+fail; true
+).
+
+
+forward_chain:-
+(
+parent(X,Y),
+parent(Y,Z),
+\+ancestor(X,Z),
+assertz(ancestor(X,Z)),
+write('new fact inferes'),write(ancestor(X,Z)),nl,
+fail; true
+).
+
+run_forward_chain:-
+forward_chain,
+write('all completed successfully').
+
+print_ancestors:-
+forall(ancestor(X,Y),(write(ancestor(X,Y)),nl)).
