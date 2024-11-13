@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add a New Designation</title>
+    <link rel="stylesheet" href="adminAddCountry.css">
+</head>
+<body>
+
+<div class="form-container">
+    <!-- Go Back Button -->
+    <div class="go-back">
+        <img src="photo/go-back-image.png" alt="Go Back" onclick="goBack()">
+    </div>
+
+    <h2>Add a New Designation</h2>
+    <form id="destinationForm" action="save_destination.php" method="POST" enctype="multipart/form-data">
+        <input type="text" name="place_name" placeholder="Give Name of the Place" required>
+
+        <!-- Couple Section -->
+        <h3>Couple</h3>
+        <input type="text" name="couple_places" placeholder="Add nearby Places for Couple with comma separation">
+        <input type="text" name="couple_best_time" placeholder="Add best time for Couple with comma separation">
+        
+        <!-- Worst months for Couple -->
+        <label>Worst months to visit for Couple:</label>
+        <div class="months-container">
+            <label><input type="checkbox" name="couple_worst_months[]" value="January"> January</label>
+            <label><input type="checkbox" name="couple_worst_months[]" value="February"> February</label>
+            <label><input type="checkbox" name="couple_worst_months[]" value="March"> March</label>
+            <label><input type="checkbox" name="couple_worst_months[]" value="April"> April</label>
+            <label><input type="checkbox" name="couple_worst_months[]" value="May"> May</label>
+            <label><input type="checkbox" name="couple_worst_months[]" value="June"> June</label>
+            <label><input type="checkbox" name="couple_worst_months[]" value="July"> July</label>
+            <label><input type="checkbox" name="couple_worst_months[]" value="August"> August</label>
+            <label><input type="checkbox" name="couple_worst_months[]" value="September"> September</label>
+            <label><input type="checkbox" name="couple_worst_months[]" value="October"> October</label>
+            <label><input type="checkbox" name="couple_worst_months[]" value="November"> November</label>
+            <label><input type="checkbox" name="couple_worst_months[]" value="December"> December</label>
+        </div>
+
+        <input type="number" name="couple_min_cost" placeholder="Minimum Cost to visit all these places">
+        <input type="file" name="couple_images[]" multiple>
+
+        <!-- Family Section -->
+        <h3>Family</h3>
+        <input type="text" name="family_places" placeholder="Add nearby Places for Family with comma separation">
+        <input type="text" name="family_best_time" placeholder="Add best time for Family with comma separation">
+        
+        <!-- Worst months for Family -->
+       <!-- Worst months to visit for Couple -->
+<label>Worst months to visit for Couple:</label>
+<div class="months-container">
+    <div class="month-group">
+        <label><input type="checkbox" name="couple_worst_months[]" value="January"> January</label>
+        <label><input type="checkbox" name="couple_worst_months[]" value="February"> February</label>
+        <label><input type="checkbox" name="couple_worst_months[]" value="March"> March</label>
+        <label><input type="checkbox" name="couple_worst_months[]" value="April"> April</label>
+        <label><input type="checkbox" name="couple_worst_months[]" value="May"> May</label>
+        <label><input type="checkbox" name="couple_worst_months[]" value="June"> June</label>
+        <label><input type="checkbox" name="couple_worst_months[]" value="July"> July</label>
+        <label><input type="checkbox" name="couple_worst_months[]" value="August"> August</label>
+    </div>
+    <div class="month-group">
+        <label><input type="checkbox" name="couple_worst_months[]" value="September"> September</label>
+        <label><input type="checkbox" name="couple_worst_months[]" value="October"> October</label>
+        <label><input type="checkbox" name="couple_worst_months[]" value="November"> November</label>
+        <label><input type="checkbox" name="couple_worst_months[]" value="December"> December</label>
+    </div>
+</div>
+
+        <input type="number" name="family_min_cost" placeholder="Minimum Cost to visit all these places">
+        <input type="file" name="family_images[]" multiple>
+
+        <!-- Friends Section -->
+        <h3>Friends</h3>
+        <input type="text" name="friends_places" placeholder="Add nearby Places for Friends with comma separation">
+        <input type="text" name="friends_best_time" placeholder="Add best time for Friends with comma separation">
+        
+        <!-- Worst months for Friends -->
+        <label>Worst months to visit for Friends:</label>
+        <div class="months-container">
+            <label><input type="checkbox" name="friends_worst_months[]" value="January"> January</label>
+            <label><input type="checkbox" name="friends_worst_months[]" value="February"> February</label>
+            <label><input type="checkbox" name="friends_worst_months[]" value="March"> March</label>
+            <label><input type="checkbox" name="friends_worst_months[]" value="April"> April</label>
+            <label><input type="checkbox" name="friends_worst_months[]" value="May"> May</label>
+            <label><input type="checkbox" name="friends_worst_months[]" value="June"> June</label>
+            <label><input type="checkbox" name="friends_worst_months[]" value="July"> July</label>
+            <label><input type="checkbox" name="friends_worst_months[]" value="August"> August</label>
+            <label><input type="checkbox" name="friends_worst_months[]" value="September"> September</label>
+            <label><input type="checkbox" name="friends_worst_months[]" value="October"> October</label>
+            <label><input type="checkbox" name="friends_worst_months[]" value="November"> November</label>
+            <label><input type="checkbox" name="friends_worst_months[]" value="December"> December</label>
+        </div>
+
+        <input type="number" name="friends_min_cost" placeholder="Minimum Cost to visit all these places">
+        <input type="file" name="friends_images[]" multiple>
+
+        <!-- Solo Section -->
+        <h3>Solo</h3>
+        <input type="text" name="solo_places" placeholder="Add nearby Places for Solo with comma separation">
+        <input type="text" name="solo_best_time" placeholder="Add best time for Solo with comma separation">
+        
+        <!-- Worst months for Solo -->
+        <label>Worst months to visit for Solo:</label>
+        <div class="months-container">
+            <label><input type="checkbox" name="solo_worst_months[]" value="January"> January</label>
+            <label><input type="checkbox" name="solo_worst_months[]" value="February"> February</label>
+            <label><input type="checkbox" name="solo_worst_months[]" value="March"> March</label>
+            <label><input type="checkbox" name="solo_worst_months[]" value="April"> April</label>
+            <label><input type="checkbox" name="solo_worst_months[]" value="May"> May</label>
+            <label><input type="checkbox" name="solo_worst_months[]" value="June"> June</label>
+            <label><input type="checkbox" name="solo_worst_months[]" value="July"> July</label>
+            <label><input type="checkbox" name="solo_worst_months[]" value="August"> August</label>
+            <label><input type="checkbox" name="solo_worst_months[]" value="September"> September</label>
+            <label><input type="checkbox" name="solo_worst_months[]" value="October"> October</label>
+            <label><input type="checkbox" name="solo_worst_months[]" value="November"> November</label>
+            <label><input type="checkbox" name="solo_worst_months[]" value="December"> December</label>
+        </div>
+
+        <input type="number" name="solo_min_cost" placeholder="Minimum Cost to visit all these places">
+        <input type="file" name="solo_images[]" multiple>
+
+        <button type="submit">Add Destination</button>
+    </form>
+</div>
+
+<script>
+    function goBack() {
+        window.history.back();
+    }
+</script>
+
+</body>
+</html>
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f3f3f3;
+}
+
+.form-container {
+    max-width: 600px;
+    margin: 50px auto;
+    background: white;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    position: relative;
+    line-height: 50px;
+}
+
+.go-back {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+.go-back img {
+    width: 30px;
+    height: 30px;
+    cursor: pointer;
+}
+
+h2 {
+    text-align: center;
+    color: #333;
+}
+
+h3 {
+    color: #666;
+    margin-top: 20px;
+}
+
+input[type="text"],
+input[type="number"],
+input[type="file"],
+button {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+button {
+    background-color: #333;
+    color: white;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #555;
+}
+.months-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 10px;
+}
+
+.month-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    width: 48%;  /* Adjust this width to control the layout */
+}
+
+<?php
+// Database connection
+$conn = new mysqli("localhost", "root", "", "project");
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+// Function to handle file uploads
+function uploadImages($files) {
+    $uploadedFiles = [];
+    
+    // Define the upload directory
+    $uploadDir = 'uploads/';
+    
+    // Ensure the 'uploads' folder exists; create it if it doesn't
+    if (!is_dir($uploadDir)) {
+        mkdir($uploadDir, 0777, true); // Creates the directory with write permissions
+    }
+
+    foreach ($files['name'] as $key => $name) {
+        // Set the path for the uploaded file
+        $targetFile = $uploadDir . basename($name);
+        
+        // Move the uploaded file to the target location
+        if (move_uploaded_file($files['tmp_name'][$key], $targetFile)) {
+            $uploadedFiles[] = $targetFile; // Store the path of the successfully uploaded file
+        } else {
+            echo "Failed to upload: " . $name . "<br>";
+        }
+    }
+    
+    // Return the paths of uploaded files as a comma-separated string
+    return implode(",", $uploadedFiles);
+}
+
+// Get form data from POST request
+$place_name = $_POST['place_name'];
+$couple_places = $_POST['couple_places'];
+$couple_best_time = $_POST['couple_best_time'];
+$couple_worst_months = isset($_POST['couple_worst_months']) ? implode(",", $_POST['couple_worst_months']) : '';
+$couple_min_cost = $_POST['couple_min_cost'];
+$couple_images = uploadImages($_FILES['couple_images']);
+
+$family_places = $_POST['family_places'];
+$family_best_time = $_POST['family_best_time'];
+$family_worst_months = isset($_POST['family_worst_months']) ? implode(",", $_POST['family_worst_months']) : '';
+$family_min_cost = $_POST['family_min_cost'];
+$family_images = uploadImages($_FILES['family_images']);
+
+$friends_places = $_POST['friends_places'];
+$friends_best_time = $_POST['friends_best_time'];
+$friends_worst_months = isset($_POST['friends_worst_months']) ? implode(",", $_POST['friends_worst_months']) : '';
+$friends_min_cost = $_POST['friends_min_cost'];
+$friends_images = uploadImages($_FILES['friends_images']);
+
+$solo_places = $_POST['solo_places'];
+$solo_best_time = $_POST['solo_best_time'];
+$solo_worst_months = isset($_POST['solo_worst_months']) ? implode(",", $_POST['solo_worst_months']) : '';
+$solo_min_cost = $_POST['solo_min_cost'];
+$solo_images = uploadImages($_FILES['solo_images']);
+
+// Insert the data into the 'destinations' table
+$sql = "INSERT INTO destinations (
+            place_name, 
+            couple_places, couple_best_time, couple_worst_months, couple_min_cost, couple_images,
+            family_places, family_best_time, family_worst_months, family_min_cost, family_images,
+            friends_places, friends_best_time, friends_worst_months, friends_min_cost, friends_images,
+            solo_places, solo_best_time, solo_worst_months, solo_min_cost, solo_images
+        ) VALUES (
+            '$place_name', 
+            '$couple_places', '$couple_best_time', '$couple_worst_months', '$couple_min_cost', '$couple_images',
+            '$family_places', '$family_best_time', '$family_worst_months', '$family_min_cost', '$family_images',
+            '$friends_places', '$friends_best_time', '$friends_worst_months', '$friends_min_cost', '$friends_images',
+            '$solo_places', '$solo_best_time', '$solo_worst_months', '$solo_min_cost', '$solo_images'
+        )";
+
+// Execute the query and check for errors
+if ($conn->query($sql) === TRUE) {
+    echo "<script>
+            alert('New destination added successfully');
+            window.location.href = 'adminListedCountries.php';
+          </script>";
+} else {
+    echo "Error: " . $sql . "<br>" . $conn->error;
+}
+
+// Close the database connection
+$conn->close();
+?>
