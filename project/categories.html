@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Travel Companion</title>
+    <link rel="stylesheet" href="categories.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Select Who is Travelling with You</h1>
+        <div class="card-container">
+            <!-- Couple -->
+            <a href="couplePlaces.php" class="card" data-category="couple">
+                <div class="icon">
+                    <img src="photo/couple.png" alt="Couple">
+                </div>
+                <p>Couple</p>
+            </a>
+            <!-- Family -->
+            <a href="familyPlaces.php" class="card" data-category="family">
+                <div class="icon">
+                    <img src="photo/family.png" alt="Family">
+                </div>
+                <p>Family</p>
+            </a>
+            <!-- Friends -->
+            <a href="friendsPlaces.php" class="card" data-category="friends">
+                <div class="icon">
+                    <img src="photo/friends.png" alt="Friends">
+                </div>
+                <p>Friends</p>
+            </a>
+            <!-- Solo -->
+            <a href="soloPlaces.php" class="card" data-category="solo">
+                <div class="icon">
+                    <img src="photo/solo.png" alt="Solo">
+                </div>
+                <p>Solo</p>
+            </a>
+        </div>
+    </div>
+
+    <script>
+        // Function to get query parameters from the URL
+        function getQueryParam(param) {
+            const urlParams = new URLSearchParams(window.location.search);
+            return urlParams.get(param);
+        }
+
+        // Get the `id` from the previous page URL
+        const previousId = getQueryParam('id');
+
+        // Update the category cards with the `id` from the previous page
+        document.querySelectorAll('.card').forEach(card => {
+            const category = card.getAttribute('data-category');
+            let categoryPage = '';
+
+            // Assign the correct PHP page based on the category
+            switch(category) {
+                case 'couple':
+                    categoryPage = 'couplePlaces.php';
+                    break;
+                case 'family':
+                    categoryPage = 'familyPlaces.php';
+                    break;
+                case 'friends':
+                    categoryPage = 'friendsPlaces.php';
+                    break;
+                case 'solo':
+                    categoryPage = 'soloPlaces.php';
+                    break;
+            }
+
+            // If an `id` exists, append it to the URL
+            card.href = `${categoryPage}?id=${previousId || ''}`;
+        });
+    </script>
+</body>
+</html>
