@@ -1,0 +1,354 @@
+CREATE DATABASE project;
+USE project;
+
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    phone VARCHAR(15) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE admin (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    first_name VARCHAR(50) NOT NULL,
+    last_name VARCHAR(50) NOT NULL,
+    phone VARCHAR(15) NOT NULL,
+    email VARCHAR(100) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+
+CREATE TABLE IF NOT EXISTS reviews (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    user_name VARCHAR(255) NOT NULL,
+    stars INT NOT NULL,
+    experience TEXT NOT NULL,
+    submitted_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+CREATE TABLE destinations (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    place_name VARCHAR(255) NOT NULL,
+
+    -- Couple-related columns
+    couple_places TEXT,
+    couple_best_time TEXT,
+    couple_worst_months VARCHAR(255),
+    couple_min_cost TEXT,
+
+    -- Family-related columns
+    family_places TEXT,
+    family_best_time TEXT,
+    family_worst_months VARCHAR(255),
+    family_min_cost TEXT,
+
+    -- Friends-related columns
+    friends_places TEXT,
+    friends_best_time TEXT,
+    friends_worst_months VARCHAR(255),
+    friends_min_cost TEXT,
+
+    -- Solo-related columns
+    solo_places TEXT,
+    solo_best_time TEXT,
+    solo_worst_months VARCHAR(255),
+    solo_min_cost TEXT,
+
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+);
+
+INSERT INTO destinations ( 
+    place_name, 
+    couple_places, couple_best_time, couple_worst_months, couple_min_cost, 
+    family_places, family_best_time, family_worst_months, family_min_cost, 
+    friends_places, friends_best_time, friends_worst_months, friends_min_cost, 
+    solo_places, solo_best_time, solo_worst_months, solo_min_cost, 
+    created_at 
+) VALUES ( 
+    'France', 
+    -- Couple Data
+    'Eiffel Tower, Montmartre, Seine River Cruise, Luxembourg Gardens, Sacré-Cœur Basilica, Tuileries Garden, Pont des Arts, Palais Garnier, Musée Rodin, Île de la Cité and Notre-Dame', 
+    '8:00 AM, 9:30 AM, 6:30 PM, 10:30 AM, 8:30 AM, 9:00 AM, 7:15 PM, 11:00 AM, 10:00 AM, 8:15 AM', 
+    'November, December, January', 
+    '€25,€9,€15,€10,€39,€10,€14,€20,€15,€30', 
+    -- Family Data
+    'Disneyland Paris, Eiffel Tower, Louvre Museum, Jardin d''Acclimatation, Luxembourg Gardens, Musée d''Orsay, Parc des Buttes-Chaumont, Aquarium de Paris, Palais de la Découverte, Cité des Sciences et de l''Industrie', 
+    '10:00 AM, 11:00 AM, 1:00 PM, 12:00 PM, 9:00 AM, 2:00 PM, 3:00 PM, 4:30 PM, 10:30 AM, 11:30 AM', 
+    'November, December, January', 
+    '€25,€9,€15,€10,€39,€10,€14,€20,€15,€30', 
+    -- Friends Data
+    'Versailles, Giverny, Fontainebleau, Château de Chantilly, Mont Saint-Michel, Reims, Rouen, Amiens, Lille, Chartres', 
+    '9:00 AM, 10:00 AM, 11:30 AM, 1:00 PM, 3:30 PM, 5:00 PM, 7:00 PM, 9:00 PM, 2:00 PM, 4:00 PM', 
+    'November, December, January', 
+    '€25,€9,€15,€10,€39,€10,€14,€20,€15,€30', 
+    -- Solo Data
+    'Rouen, Reims, Giverny, Amiens, Lille, Chartres, Fontainebleau, Orléans, Provins, Étretat', 
+    '8:30 AM, 10:00 AM, 12:00 PM, 1:30 PM, 3:30 PM, 5:00 PM, 6:00 PM, 7:00 PM, 8:00 AM, 11:00 AM', 
+    'November, December, January', 
+    '€25,€9,€15,€10,€39,€10,€14,€20,€15,€30', 
+    CURRENT_TIMESTAMP 
+);
+
+
+INSERT INTO destinations (     
+    place_name,      
+    couple_places, couple_best_time, couple_worst_months, couple_min_cost,     
+    family_places, family_best_time, family_worst_months, family_min_cost,     
+    friends_places, friends_best_time, friends_worst_months, friends_min_cost,     
+    solo_places, solo_best_time, solo_worst_months, solo_min_cost,     
+    created_at 
+) VALUES (     
+    'Singapore',      
+    -- Couple Data
+    'Gardens by the Bay, Marina Bay Sands SkyPark, Sentosa Island, Botanic Gardens, Singapore Flyer, Clarke Quay, Esplanade – Theatres on the Bay, East Coast Park, Mount Faber, Fort Canning Park',      
+    '7:00 PM, 6:30 PM, 10:00 AM, 9:00 AM, 11:00 AM, 7:30 PM, 8:00 PM, 9:00 AM, 5:00 PM, 4:00 PM',      
+    'November, December, January',      
+    'S$25,S$12,S$15,S$8,S$33,S$10,S$25,S$20,S$10,S$18',      
+    -- Family Data
+    'Universal Studios Singapore, Singapore Zoo, S.E.A. Aquarium, Jurong Bird Park, Marina Barrage, KidZania Singapore, Singapore Science Centre, Adventure Cove Waterpark, River Safari, ArtScience Museum',      
+    '10:00 AM, 9:00 AM, 10:00 AM, 8:30 AM, 11:00 AM, 10:30 AM, 9:30 AM, 11:00 AM, 10:00 AM, 10:30 AM',      
+    'November, December, January',      
+    'S$68,S$20,S$32,S$18,S$15,S$25,S$12,S$38,S$35,S$19',      
+    -- Friends Data
+    'Pulau Ubin, East Coast Park, Sentosa, Marina Bay Sands, Clarke Quay, Little India, Chinatown, Bugis Street, Orchard Road, Night Safari',      
+    '9:00 AM, 8:30 AM, 10:00 AM, 6:00 PM, 7:00 PM, 3:00 PM, 2:00 PM, 4:30 PM, 5:00 PM, 7:30 PM',      
+    'November, December, January',      
+    'S$20,S$10,S$12,S$20,S$30,S$15,S$8,S$6,S$10,S$15',      
+    -- Solo Data
+    'Bukit Timah Nature Reserve, Kranji War Memorial, East Coast Park, Chinatown, Little India, Kampong Glam, Southern Ridges, Pulau Ubin, Gardens by the Bay, Marina Bay Sands',      
+    '8:30 AM, 10:00 AM, 9:00 AM, 10:30 AM, 11:00 AM, 1:30 PM, 2:00 PM, 9:30 AM, 7:00 PM, 5:00 PM',      
+    'November, December, January',      
+    'S$5,S$0,S$3,S$8,S$10,S$5,S$10,S$20,S$28,S$23',      
+    CURRENT_TIMESTAMP 
+);
+
+
+INSERT INTO destinations (     
+    place_name,      
+    couple_places, couple_best_time, couple_worst_months, couple_min_cost,     
+    family_places, family_best_time, family_worst_months, family_min_cost,     
+    friends_places, friends_best_time, friends_worst_months, friends_min_cost,     
+    solo_places, solo_best_time, solo_worst_months, solo_min_cost,     
+    created_at 
+) VALUES (     
+    'Italy',      
+    -- Couple Data
+    'Venice Grand Canal, Colosseum, Florence Duomo, Amalfi Coast, Lake Como, Vatican Museums, St. Peter\'s Basilica, Verona, Cinque Terre, Trevi Fountain',      
+    '7:00 AM, 8:00 AM, 8:30 AM, 9:00 AM, 9:00 AM, 9:00 AM, 10:00 AM, 10:30 AM, 11:00 AM, 7:30 PM',      
+    'November, January, February',      
+    '€35,€20,€15,€50,€30,€17,€10,€12,€5,€15',      
+    -- Family Data
+    'Colosseum, Leaning Tower of Pisa, Roman Forum, Florence Duomo, Pompeii, Vatican Museums, Gardaland, Bioparco di Roma, Lake Garda, Aquarium of Genoa',      
+    '8:00 AM, 8:30 AM, 8:30 AM, 9:00 AM, 9:30 AM, 9:30 AM, 10:00 AM, 10:00 AM, 10:30 AM, 10:30 AM',      
+    'November, January, February',      
+    '€20,€18,€15,€10,€15,€17,€30,€15,€25,€15',      
+    -- Friends Data
+    'Venice, Rome, Florence, Milan, Naples, Cinque Terre, Amalfi Coast, Lake Garda, Sicily, Capri',      
+    '8:00 AM, 8:30 AM, 9:00 AM, 9:00 AM, 9:30 AM, 10:00 AM, 10:30 AM, 11:00 AM, 11:00 AM, 7:00 PM',      
+    'November, January, February',      
+    '€25,€30,€20,€15,€10,€8,€15,€10,€20,€25',      
+    -- Solo Data
+    'Rome, Florence, Naples, Milan, Turin, Venice, Sicily, Lake Como, Amalfi Coast, Pompeii',      
+    '8:00 AM, 8:30 AM, 9:00 AM, 9:00 AM, 9:30 AM, 10:00 AM, 10:30 AM, 10:30 AM, 8:00 AM, 8:30 AM',      
+    'November, January, February',      
+    '€15,€10,€20,€15,€8,€20,€15,€25,€30,€18',      
+    CURRENT_TIMESTAMP   
+);
+
+
+INSERT INTO destinations (     
+    place_name,      
+    couple_places, couple_best_time, couple_worst_months, couple_min_cost,     
+    family_places, family_best_time, family_worst_months, family_min_cost,     
+    friends_places, friends_best_time, friends_worst_months, friends_min_cost,     
+    solo_places, solo_best_time, solo_worst_months, solo_min_cost,     
+    created_at 
+) VALUES (     
+    'Thailand',      
+    -- Couple Data
+    'Phuket Beaches, Phi Phi Islands, Pattaya, Chiang Mai Temples, Bangkok Grand Palace, Ayutthaya, Railay Beach, Koh Samui, Hua Hin, Floating Markets',      
+    '6:00 AM, 7:30 AM, 8:00 AM, 9:00 AM, 10:00 AM, 11:00 AM, 4:00 PM, 5:30 PM, 6:30 PM, 7:00 PM',      
+    'April, May, September',      
+    '฿1000,฿1200,฿800,฿500,฿400,฿600,฿700,฿1000,฿900,฿300',      
+    -- Family Data
+    'Safari World, Elephant Nature Park, Erawan National Park, Dream World, Dusit Zoo, Siam Ocean World, Doi Suthep, Night Bazaar Chiang Mai, Thai Cultural Shows, Hua Hin Vineyard',      
+    '7:00 AM, 8:00 AM, 9:00 AM, 9:30 AM, 10:00 AM, 10:30 AM, 11:00 AM, 4:00 PM, 5:00 PM, 6:30 PM',      
+    'April, May, September',      
+    '฿1500,฿1200,฿1000,฿900,฿500,฿800,฿700,฿600,฿400,฿300',      
+    -- Friends Data
+    'Bangkok Nightlife, Full Moon Party, Koh Tao, Phuket Patong Beach, Pai Canyon, Krabi Islands, Chiang Mai Adventures, Khao San Road, Koh Chang, Koh Lanta',      
+    '6:30 AM, 7:00 AM, 7:30 AM, 8:00 AM, 9:00 AM, 9:30 AM, 10:00 AM, 10:30 AM, 5:30 PM, 7:00 PM',      
+    'April, May, September',      
+    '฿1200,฿1000,฿800,฿900,฿600,฿700,฿500,฿400,฿300,฿200',      
+    -- Solo Data
+    'Bangkok, Chiang Mai, Ayutthaya, Phuket, Krabi, Koh Tao, Pai, Hua Hin, Koh Samui, Floating Markets',      
+    '6:00 AM, 7:30 AM, 8:00 AM, 9:00 AM, 9:30 AM, 10:00 AM, 10:30 AM, 5:30 PM, 6:30 PM, 7:00 PM',      
+    'April, May, September',      
+    '฿1000,฿800,฿700,฿600,฿500,฿400,฿300,฿200,฿150,฿100',      
+    CURRENT_TIMESTAMP   
+);
+
+INSERT INTO destinations (     
+    place_name,      
+    couple_places, couple_best_time, couple_worst_months, couple_min_cost,     
+    family_places, family_best_time, family_worst_months, family_min_cost,     
+    friends_places, friends_best_time, friends_worst_months, friends_min_cost,     
+    solo_places, solo_best_time, solo_worst_months, solo_min_cost,     
+    created_at 
+) VALUES (     
+    'Bali',      
+    -- Couple Data
+    'Uluwatu Temple, Tanah Lot, Ubud Rice Terraces, Seminyak Beach, Mount Batur, Tirta Empul, Sanur Beach, Waterfalls of Gitgit, Jimbaran Bay, Lovina Beach',      
+    '5:30 AM, 6:00 AM, 7:00 AM, 8:00 AM, 9:00 AM, 10:00 AM, 10:30 AM, 11:00 AM, 4:30 PM, 6:30 PM',      
+    'January, February, March',      
+    'IDR 100K,IDR 50K,IDR 40K,IDR 70K,IDR 200K,IDR 30K,IDR 20K,IDR 25K,IDR 150K,IDR 90K',      
+    -- Family Data
+    'Bali Safari, Waterbom Bali, Sacred Monkey Forest, Bali Bird Park, Ubud Palace, Kuta Beach, Jatiluwih Rice Fields, Besakih Temple, Tanjung Benoa, Bali Marine Park',      
+    '6:00 AM, 6:30 AM, 7:30 AM, 8:00 AM, 8:30 AM, 9:00 AM, 9:30 AM, 10:00 AM, 10:30 AM, 11:00 AM',      
+    'January, February, March',      
+    'IDR 150K,IDR 200K,IDR 50K,IDR 80K,IDR 100K,IDR 90K,IDR 70K,IDR 60K,IDR 40K,IDR 30K',      
+    -- Friends Data
+    'Kuta Nightlife, Canggu Beach, Gili Islands, Seminyak Clubs, Uluwatu Surfing, Nusa Penida, Bali Swing, Tegenungan Waterfalls, Amed Diving, Mount Batur',      
+    '5:30 AM, 6:00 AM, 6:30 AM, 7:30 AM, 8:00 AM, 8:30 AM, 9:00 AM, 10:00 AM, 10:30 AM, 11:00 AM',      
+    'January, February, March',      
+    'IDR 100K,IDR 90K,IDR 80K,IDR 70K,IDR 60K,IDR 50K,IDR 40K,IDR 30K,IDR 20K,IDR 10K',      
+    -- Solo Data
+    'Ubud, Mount Batur, Canggu, Seminyak, Nusa Lembongan, Tanah Lot, Gitgit Waterfalls, Tirta Empul, Lovina Beach, Jimbaran Bay',      
+    '5:30 AM, 6:00 AM, 6:30 AM, 7:00 AM, 8:00 AM, 8:30 AM, 9:00 AM, 10:00 AM, 11:00 AM, 4:30 PM',      
+    'January, February, March',      
+    'IDR 100K,IDR 90K,IDR 80K,IDR 70K,IDR 60K,IDR 50K,IDR 40K,IDR 30K,IDR 20K,IDR 10K',      
+    CURRENT_TIMESTAMP   
+);
+
+INSERT INTO destinations (
+    place_name, 
+    couple_places, 
+    couple_best_time, 
+    couple_worst_months, 
+    couple_min_cost, 
+    family_places, 
+    family_best_time, 
+    family_worst_months, 
+    family_min_cost, 
+    friends_places, 
+    friends_best_time, 
+    friends_worst_months, 
+    friends_min_cost, 
+    solo_places, 
+    solo_best_time, 
+    solo_worst_months, 
+    solo_min_cost, 
+    created_at 
+) VALUES (
+    'Phuket', 
+    'Phang Nga Bay, Big Buddha, Laem Phromthep Viewpoint, Patong Beach, Kata Noi Beach, Phi Phi Islands, Paradise Beach, Old Phuket Town, Karon Viewpoint, Kamala Beach', 
+    '8:00 AM, 9:30 AM, 4:00 PM, 5:00 PM, 6:00 PM, 8:30 AM, 4:30 PM, 10:00 AM, 6:00 PM, 5:00 PM', 
+    'September, October, November', 
+    'THB 2000, THB 0, THB 0, THB 100, THB 100, THB 1500, THB 200, THB 0, THB 100, THB 100', 
+    
+    'Phuket FantaSea, Splash Jungle Water Park, Tiger Kingdom Phuket, Phuket Aquarium, Patong Beach, Monkey Hill, Phuket Bird Park, Karon Beach, Old Phuket Town, Rawai Park', 
+    '6:30 PM, 8:00 AM, 9:00 AM, 9:30 AM, 3:00 PM, 10:00 AM, 9:00 AM, 10:00 AM, 10:00 AM, 9:00 AM', 
+    'September, October, November', 
+    'THB 1800, THB 1500, THB 800, THB 180, THB 100, THB 0, THB 500, THB 0, THB 0, THB 300', 
+
+    'Patong Beach, Bangla Road, Phi Phi Islands, Freedom Beach, James Bond Island, Kata Viewpoint, Similan Islands, Old Phuket Town, Surin Beach, Tiger Kingdom', 
+    '4:00 PM, 9:00 PM, 8:00 AM, 10:00 AM, 8:30 AM, 6:00 PM, 8:00 AM, 10:00 AM, 5:00 PM, 9:00 AM', 
+    'September, October, November', 
+    'THB 100, THB 0, THB 1500, THB 200, THB 1500, THB 100, THB 2500, THB 0, THB 0, THB 800', 
+
+    'Patong Beach, Big Buddha, Laem Phromthep, Rawai Beach, Kata Viewpoint, Karon Beach, Tiger Kingdom, Old Phuket Town, Phuket Elephant Sanctuary, Kamala Beach', 
+    '8:00 AM, 9:30 AM, 5:30 PM, 7:00 AM, 6:00 PM, 10:00 AM, 9:00 AM, 10:00 AM, 8:30 AM, 4:00 PM', 
+    'September, October, November', 
+    'THB 0, THB 0, THB 0, THB 0, THB 100, THB 0, THB 800, THB 0, THB 2500, THB 0', 
+    
+    CURRENT_TIMESTAMP
+);
+
+INSERT INTO destinations (
+    place_name, 
+    couple_places, 
+    couple_best_time, 
+    couple_worst_months, 
+    couple_min_cost, 
+    family_places, 
+    family_best_time, 
+    family_worst_months, 
+    family_min_cost, 
+    friends_places, 
+    friends_best_time, 
+    friends_worst_months, 
+    friends_min_cost, 
+    solo_places, 
+    solo_best_time, 
+    solo_worst_months, 
+    solo_min_cost, 
+    created_at 
+) VALUES (
+    'Tokyo', 
+    'Tokyo Tower, Shinjuku Gyoen National Garden, Meiji Shrine, Odaiba Seaside Park, Tokyo Skytree, Roppongi Hills, Imperial Palace, Yoyogi Park, Rainbow Bridge, Sumida River Cruise', 
+    '7:30 AM, 8:00 AM, 9:00 AM, 10:00 AM, 5:00 PM, 8:00 AM, 9:30 AM, 6:00 PM, 8:00 AM, 5:00 PM', 
+    'July, August', 
+    'JPY 1200, JPY 500, JPY 0, JPY 300, JPY 3000, JPY 1500, JPY 0, JPY 0, JPY 0, JPY 1200', 
+    
+    'Tokyo Disneyland, Ueno Zoo, Ghibli Museum, KidZania Tokyo, Tokyo Dome City, Legoland Discovery Center Tokyo, Tokyo Sea Life Park, National Museum of Nature and Science, Tokyo Tower, Hama-rikyu Gardens', 
+    '9:00 AM, 9:30 AM, 9:00 AM, 9:00 AM, 10:00 AM, 10:00 AM, 10:00 AM, 8:30 AM, 9:00 AM, 9:00 AM', 
+    'July, August', 
+    'JPY 7400, JPY 600, JPY 1000, JPY 3200, JPY 300, JPY 2000, JPY 700, JPY 620, JPY 1200, JPY 300', 
+
+    'Shibuya Crossing, Akihabara, Harajuku, Tokyo Disneyland, Shinjuku Golden Gai, Tsukiji Outer Market, Roppongi, Tokyo Skytree, Yoyogi Park, Senso-ji Temple', 
+    '8:00 AM, 10:00 AM, 9:00 AM, 10:00 AM, 7:00 PM, 8:00 AM, 9:00 PM, 8:00 AM, 6:00 AM, 5:00 PM', 
+    'July, August', 
+    'JPY 0, JPY 0, JPY 0, JPY 7400, JPY 0, JPY 0, JPY 0, JPY 3000, JPY 0, JPY 0', 
+
+    'Shinjuku Gyoen, Meiji Shrine, Akihabara, Asakusa, Imperial Palace, Ueno Park, Tsukiji Outer Market, Shibuya Crossing, Tokyo Tower, Roppongi Hills', 
+    '7:30 AM, 9:00 AM, 8:00 AM, 10:00 AM, 8:00 AM, 9:30 AM, 8:00 AM, 6:00 AM, 8:30 AM, 10:00 AM', 
+    'July, August', 
+    'JPY 500, JPY 0, JPY 0, JPY 0, JPY 0, JPY 0, JPY 0, JPY 0, JPY 1200, JPY 1500', 
+    
+    CURRENT_TIMESTAMP
+);
+
+INSERT INTO destinations (
+    place_name, 
+    couple_places, 
+    couple_best_time, 
+    couple_worst_months, 
+    couple_min_cost, 
+    family_places, 
+    family_best_time, 
+    family_worst_months, 
+    family_min_cost, 
+    friends_places, 
+    friends_best_time, 
+    friends_worst_months, 
+    friends_min_cost, 
+    solo_places, 
+    solo_best_time, 
+    solo_worst_months, 
+    solo_min_cost, 
+    created_at 
+) VALUES (
+    'Cappadocia', 
+    'Hot Air Balloon Ride, Love Valley, Red Valley, Uchisar Castle, Goreme Open-Air Museum, Devrent Valley, Pigeon Valley, Cavusin Village, Soganli Valley, Pasabag Valley', 
+    '6:00 AM, 6:30 PM, 6:30 PM, 10:00 AM, 9:00 AM, 5:00 PM, 4:00 PM, 3:00 PM, 5:00 PM, 10:00 AM', 
+    'December, January', 
+    'TRY 3000, TRY 0, TRY 0, TRY 50, TRY 150, TRY 0, TRY 0, TRY 0, TRY 0, TRY 0', 
+    
+    'Goreme Open-Air Museum, Avanos Pottery Workshops, Pasabag Valley, Derinkuyu Underground City, Kaymakli Underground City, Uchisar Castle, Ihlara Valley, Cavusin Village, Soganli Valley, Fairy Chimneys', 
+    '9:00 AM, 9:30 AM, 8:30 AM, 9:30 AM, 8:00 AM, 7:00 AM, 10:00 AM, 9:00 AM, 10:00 AM, 8:00 AM', 
+    'December, January', 
+    'TRY 1500, TRY 500, TRY 200, TRY 1000, TRY 120, TRY 1500, TRY 300, TRY 0, TRY 400, TRY 50', 
+
+    'Goreme, Avanos, Uchisar, Ihlara Valley, Devrent Valley, Love Valley, Red Valley, Pigeon Valley, Cavusin, Soganli', 
+    '9:00 AM, 10:00 AM, 8:30 AM, 10:00 AM, 7:00 AM, 8:00 AM, 8:30 AM, 10:00 AM, 8:00 AM, 9:00 AM', 
+    'December, January', 
+    'TRY 0, TRY 1500, TRY 0, TRY 3000, TRY 1000, TRY 0, TRY 100, TRY 150, TRY 0, TRY 0', 
+
+    'Cavusin Village, Red Valley, Uchisar Castle, Goreme, Love Valley, Pasabag, Devrent Valley, Ihlara Valley, Kaymakli, Soganli Valley', 
+    '7:00 AM, 9:30 AM, 9:00 AM, 10:00 AM, 5:30 PM, 8:00 AM, 9:00 AM, 10:00 AM, 9:30 AM, 8:30 AM', 
+    'December, January', 
+    'TRY 0, TRY 100, TRY 1500, TRY 200, TRY 0, TRY 0, TRY 50, TRY 1000, TRY 0, TRY 300', 
+    
+    CURRENT_TIMESTAMP
+);

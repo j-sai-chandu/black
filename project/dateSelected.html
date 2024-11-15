@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Select Travel Date</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: #000;
+        }
+
+        .container {
+            background-color: #073b34;
+            border-radius: 15px;
+            padding: 20px 30px;
+            width: 300px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .container h2 {
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+
+        .date-picker {
+            display: flex;
+            align-items: center;
+            background-color: #065c50;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            padding: 10px;
+        }
+
+        .date-picker label {
+            flex-grow: 1;
+            color: #9dbdb4;
+            font-size: 14px;
+        }
+
+        .date-picker input[type="date"] {
+            background: none;
+            border: none;
+            color: #ffffff;
+            outline: none;
+            font-size: 14px;
+            width: 100%;
+        }
+
+        .search-button {
+            background-color: #3b2b2b;
+            border: none;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            margin: 10px auto 0;
+            display: block;
+        }
+
+        .search-button:hover {
+            background-color: #5a3b3b;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Select Travel Date</h2>
+        <label>Select Start Date</label>
+        <div class="date-picker">
+            <input type="date" id="start-date" placeholder="start date">
+        </div><br>
+        <label>Select End Date</label>
+        <div class="date-picker">
+            <input type="date" id="end-date" placeholder="end date">
+        </div><br>
+        <button class="search-button">Search</button>
+    </div>
+
+    <script>
+        document.querySelector('.search-button').addEventListener('click', () => {
+            const startDate = document.getElementById('start-date').value;
+            const endDate = document.getElementById('end-date').value;
+            const urlParams = new URLSearchParams(window.location.search);
+            const id = urlParams.get('id');
+
+            if (startDate && endDate) {
+                // Send AJAX request to check dates
+                fetch(`check_dates.php?id=${id}&start_date=${startDate}&end_date=${endDate}`)
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.isWorstMonth) {
+                            alert("This place is too cold, and you will not get a better experience. Please select other dates.");
+                        } else {
+                            // Redirect to categories.html with the place ID
+                            window.location.href = `categories.html?id=${id}`;
+                        }
+                    })
+                    .catch(error => console.error("Error:", error));
+            } else {
+                alert('Please select both start and end dates.');
+            }
+        });
+    </script>
+</body>
+</html>
